@@ -1,28 +1,18 @@
 import React from "react";
 
-const ProductDetails = ({ product }) => {
+const ProductDetails = ({ product, onClose }) => {
+  console.log("product: ", product);
   return (
     <div
-      className="modal fade"
+      className="modal"
       id="productModal"
-      tabindex="-1"
+      tabIndex="-1"
       role="dialog"
       aria-labelledby="productModalLabel"
       aria-hidden="true"
     >
       <div className="modal-dialog" role="document">
         <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Product Details</h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
           <div className="modal-body">
             <p>
               <strong>User ID:</strong> {product.id}
@@ -43,6 +33,7 @@ const ProductDetails = ({ product }) => {
               <strong>Rate:</strong> {product.rating.rate}
             </p>
             <img
+              id="modal-image"
               src={product.image}
               alt="Product Image"
               className="img-fluid"
@@ -53,6 +44,7 @@ const ProductDetails = ({ product }) => {
               type="button"
               className="btn btn-secondary"
               data-dismiss="modal"
+              onClick={onClose}
             >
               Close
             </button>

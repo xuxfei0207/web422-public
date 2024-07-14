@@ -2,9 +2,13 @@ import ProductTable from "@/components/ProductTable";
 import Navbar from "@/components/Navbar";
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
+import ProductDetails from "@/components/ProductDetails";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const { dispatch } = useCart();
 
   useEffect(() => {
@@ -44,12 +48,21 @@ export default function Home() {
   const handleRowClick = (product) => {
     console.log("clicked product: ", product);
     dispatch({ type: 'ADD_ITEM', payload: product });
+    setIsModalOpen(true);
+    setProduct(product);
+  }
+
+  const onClose = () => {
+    console.log("clicked close modal");
+    setIsModalOpen(false);
+    setProduct({});
   }
 
   return (
     <>
       <Navbar handleSearch={handleSearch} />
       <ProductTable products={products} handleRowClick={handleRowClick} />
+      {isModalOpen === true && <ProductDetails product={product} onClose={onClose} />}
     </>
   );
 }
