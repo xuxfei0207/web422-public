@@ -4,9 +4,11 @@ import { useEffect, useState } from 'react';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [cartsItem, setCartsItem] = useState([]);
 
   useEffect(() => {
     fetchProducts();
+    setCartsItem([]);
   }, []);
 
   const fetchProducts = async () => {
@@ -40,13 +42,13 @@ export default function Home() {
   };
 
   const handleRowClick = () => {
-    
+
   }
 
 
   return (
     <>
-      <Navbar handleSearch={handleSearch} />
+      <Navbar handleSearch={handleSearch} cartsItem={cartsItem}/>
       <ProductTable products={products} handleRowClick={handleRowClick} />
     </>
   );
