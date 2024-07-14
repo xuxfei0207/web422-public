@@ -1,17 +1,16 @@
-// components/ProductDetails.js
 import React from "react";
 
 const ProductDetails = ({ product }) => {
   return (
     <div
-      class="modal fade"
+      className="modal fade"
       id="productModal"
       tabindex="-1"
       role="dialog"
       aria-labelledby="productModalLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog" role="document">
+      <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">Product Details</h5>
