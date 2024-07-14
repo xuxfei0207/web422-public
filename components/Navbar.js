@@ -1,8 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
+import { useCart } from "../context/CartContext";
 
-const Navbar = ({ handleSearch, cartsItem }) => {
+const Navbar = ({ handleSearch }) => {
+  const { state } = useCart();
+  console.log("Navbar state: ", state);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -44,7 +47,7 @@ const Navbar = ({ handleSearch, cartsItem }) => {
           </li>
           <li className={styles.navItem}>
             <Link href="/cart" className={styles.navLinks}>
-              Shopping Cart ({cartsItem.length})
+              Shopping Cart ({state.items.length})
             </Link>
           </li>
         </ul>

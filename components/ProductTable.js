@@ -15,11 +15,12 @@ const ProductTable = ({products, handleRowClick}) => {
               <th scope="col">Category</th>
               <th scope="col">Rate</th>
               <th scope="col">Count</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             {products.map((product) => (
-              <tr key={product.id} onClick={() => handleRowClick(product)}>
+              <tr key={product.id} >
                 <td>{product.id}</td>
                 <td>{product.title}</td>
                 <td>${product.price}</td>
@@ -34,6 +35,7 @@ const ProductTable = ({products, handleRowClick}) => {
                 <td>{product.category}</td>
                 <td>{product.rating.rate}</td>
                 <td>{product.rating.count}</td>
+                <td><button onClick={() => handleRowClick(product)}>Add</button></td>
               </tr>
             ))}
           </tbody>

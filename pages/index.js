@@ -1,14 +1,14 @@
 import ProductTable from "@/components/ProductTable";
 import Navbar from "@/components/Navbar";
 import { useEffect, useState } from 'react';
+import { useCart } from '../context/CartContext';
 
 export default function Home() {
   const [products, setProducts] = useState([]);
-  const [cartsItem, setCartsItem] = useState([]);
+  const { dispatch } = useCart();
 
   useEffect(() => {
     fetchProducts();
-    setCartsItem([]);
   }, []);
 
   const fetchProducts = async () => {
@@ -41,14 +41,14 @@ export default function Home() {
     }
   };
 
-  const handleRowClick = () => {
-
+  const handleRowClick = (product) => {
+    console.log("clicked product: ", product);
+    dispatch({ type: 'ADD_ITEM', payload: product });
   }
-
 
   return (
     <>
-      <Navbar handleSearch={handleSearch} cartsItem={cartsItem}/>
+      <Navbar handleSearch={handleSearch} />
       <ProductTable products={products} handleRowClick={handleRowClick} />
     </>
   );
