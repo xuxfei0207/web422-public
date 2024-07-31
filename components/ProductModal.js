@@ -1,6 +1,6 @@
 import React from "react";
 
-const ProductDetails = ({ product, onClose }) => {
+const ProductModal = ({ product, onClose }) => {
   console.log("product: ", product);
   return (
     <div
@@ -55,4 +55,4 @@ const ProductDetails = ({ product, onClose }) => {
   );
 };
 
-export default ProductDetails;
+export default ProductModal;

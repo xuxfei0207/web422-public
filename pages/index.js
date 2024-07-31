@@ -2,7 +2,7 @@ import ProductTable from "@/components/ProductTable";
 import Navbar from "@/components/Navbar";
 import { useEffect, useState } from 'react';
 import { useCart } from '../context/CartContext';
-import ProductDetails from "@/components/ProductDetails";
+import ProductModal from "@/components/ProductModal";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -62,7 +62,7 @@ export default function Home() {
     <>
       <Navbar handleSearch={handleSearch} />
       <ProductTable products={products} handleRowClick={handleRowClick} />
-      {isModalOpen === true && <ProductDetails product={product} onClose={onClose} />}
+      {isModalOpen === true && <ProductModal product={product} onClose={onClose} />}
     </>
   );
 }
