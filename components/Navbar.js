@@ -51,7 +51,14 @@ const Navbar = ({ handleSearch }) => {
             </Link>
           </li>
         </ul>
-        <button
+        <ul className={styles.navMenu}>
+            <li className={styles.navItem}>
+              <Link href="/login" className={styles.navLinks}>
+                Login
+              </Link>
+            </li>
+        </ul>
+        {/* <button
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
@@ -76,7 +83,7 @@ const Navbar = ({ handleSearch }) => {
               Search
             </button>
           </form>
-        </div>
+        </div> */}
       </div>
     </nav>
   );
