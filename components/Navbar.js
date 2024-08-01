@@ -2,10 +2,9 @@ import React from "react";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import { useCart } from "../context/CartContext";
-import { getToken } from "@/lib/authenticate";
 import { useEffect, useState } from 'react';
 
-const Navbar = ({ handleSearch }) => {
+const Navbar = () => {
   const { state } = useCart();
   const [jwtToken, setJwtToken] = useState([]);
   
@@ -14,6 +13,12 @@ const Navbar = ({ handleSearch }) => {
     console.log("access_token: ", access_token);
     setJwtToken(access_token);
   }, []);
+
+  async function handleLogout(e) {
+    e.preventDefault();
+    localStorage.removeItem('access_token');
+    setJwtToken();
+  }
 
   console.log("Navbar state: ", state);
   
@@ -65,7 +70,7 @@ const Navbar = ({ handleSearch }) => {
         {jwtToken ? (
           <ul className={styles.navMenu}>
             <li className={styles.navItem}>
-              <Link href="/logout" className={styles.navLinks}>
+              <Link href="/" onClick={handleLogout} className={styles.navLinks}>
                 Log out
               </Link>
             </li>
