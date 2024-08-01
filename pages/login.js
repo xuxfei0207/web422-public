@@ -14,8 +14,10 @@ export default function Login(props) {
 
     try {
       await authenticateUser(user, password);
-      // router.push("/");
+      setWarning("");
+      router.push("/");
     } catch (err) {
+      console.log("err", err);
       setWarning(err.message);
     }
   }

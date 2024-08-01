@@ -26,11 +26,11 @@ export default async (req, res) => {
         console.log("db user:", user)
       
         if (!user) {
-          res.status(404).end(`User not found`);
+          res.status(404).json({ "message": "Username not found!"});
         } 
         // 2. check if password matches
         if (user.password != password) {
-          res.status(400).end(`Username and password do not match!`);
+          res.status(400).json({ "message": "Username and password do not match!"});
         }
 
         // 3. Sign in user - generate JWT and return JWT to frontend
