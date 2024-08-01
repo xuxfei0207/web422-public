@@ -11,6 +11,7 @@ let jwtOptions = {
 export default async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log(req.body);
     const { method } = req;
     const client = await clientPromise;
     const db = client.db("shopping");
@@ -21,6 +22,8 @@ export default async (req, res) => {
         const user = await db
           .collection("users")
           .findOne({ username: username });
+
+        console.log("db user:", user)
       
         if (!user) {
           res.status(404).end(`User not found`);
@@ -39,15 +42,15 @@ export default async (req, res) => {
         res.status(200).json({ "message": "login successful", "token": token });
 
         break;
-      case "GET":
-        const users = await db
-          .collection("users")
-          .find({})
-          .limit(10)
-          .toArray();
-        res.json(users);
+      // case "GET":
+      //   const users = await db
+      //     .collection("users")
+      //     .find({})
+      //     .limit(10)
+      //     .toArray();
+      //   res.json(users);
 
-        break;
+      //   break;
       default:
         res.setHeader("Allow", ["POST"]);
         res.status(405).end(`Method ${method} Not Allowed`);
