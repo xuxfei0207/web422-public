@@ -16,8 +16,13 @@ export default async (req, res) => {
     const client = await clientPromise;
     const db = client.db("shopping");
 
+  
     switch (method) {
       case "POST":
+        if (!username || !password) {
+          return res.status(400).json({ message: "All fields are required" });
+        }
+    
         // 1. check if username exists in db
         const user = await db
           .collection("users")
