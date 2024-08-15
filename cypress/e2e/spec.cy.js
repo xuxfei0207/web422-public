@@ -3,7 +3,7 @@ it('cannot navigate to / without being logged in', () => {
   .url().should('include', "/login");
 });
 
-it('rejects a login attempt by an invalid github user: !!!', () => {
+it('rejects a login attempt by an invalid user: !!!', () => {
   cy.visit("/login")
   .get('input[name="username"]').type("invalid_user").type("{enter}")
   .url().should('include', "/login");
